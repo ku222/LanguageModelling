@@ -3,6 +3,7 @@ import argparse
 import functools
 import os
 
+
 import torch.distributed as dist
 import torch.multiprocessing as mp
 from transformers import BertTokenizerFast
@@ -96,13 +97,13 @@ def train_distributed(rank: int, **kwargs) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument("--gcredentialspath",       type=str,   default="",                         help="Path to Google Application Credentials")
     parser.add_argument("--master_addr",            type=str,   default="localhost",                help="Address of the Rank 0 Node")
     parser.add_argument("--master_port",            type=str,   default="8880",                     help="Free Port on machine with rank 0")
-    parser.add_argument("--world_size",             type=int,   default=1,                          help="Number of distributed GPUs/processes to use")
+    parser.add_argument("--world_size",             type=int,   default=2,                          help="Number of distributed GPUs/processes to use")
     parser.add_argument("--backend",                type=str,   default="gloo",                     help="Backend library to use for distributed processing")
     parser.add_argument("--continue_from_saved",    type=bool,  default=False,                      help="Whether to continue from existing model checkpoint or not")
     parser.add_argument("--saved_weights_path",     type=str,   default="saved_weights/bert.pt",    help="Local location to save checkpoint weights of the trained model to")
-    parser.add_argument("--gcredentialspath",       type=str,   default="C:/Users/Kovid/ServiceAccounts/creds.json", help="Path to Google Application Credentials")
     parser.add_argument("--gcpbucketname",          type=str,   default="ptorchdistributed",        help="Name of the GCP bucket to store model weights in")
     parser.add_argument("--gcpblobname",            type=str,   default="bert.pt",                  help="Name of the blob file to store model weights in")
     parser.add_argument("--use_cloud_logging",      type=bool,  default=True,                       help="Whether to use Cloud Logging for message logging")
