@@ -15,11 +15,6 @@ class EmbeddingLayer(nn.Module):
         self.register_buffer("position_ids", torch.arange(max_position_embeddings).expand((1, -1)))   # (1, max_position_embeddings)
 
     def forward(self, input_ids: LongTensor, token_type_ids: LongTensor = None, position_ids: LongTensor = None) -> FloatTensor:
-        """
-        Args:
-            Tokens:     shape of (batch, seqlen)
-            Segments:   shape of (batch, seqlen)
-        """
         (batch, seqlen) = input_ids.shape
 
         # No segments - assume all segment 0 (one sentence)
