@@ -8,4 +8,8 @@ From-scratch adaptation of BERT Transformer architecture for Masked Language Mod
 
 ## Training
 
-Run trainp
+Run train.py, which will:
+
+- Download the Wiki103 dataset from https://www.salesforce.com/products/einstein/ai-research/the-wikitext-dependency-language-modeling-dataset/
+- Extract dataset contents into given `datafolder`/wiki-103/
+- Create 
