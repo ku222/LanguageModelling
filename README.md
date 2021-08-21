@@ -15,3 +15,8 @@ Run train.py, which will spawn multiple independent PyTorch GPU nodes, each of w
 - Commence training
 - Periodically log losses & subjective performance metrics
 - Periodically checkpoint the model weights to local/cloud storage
+
+
+## TODO
+
+- Add code to create & submit distributed PyTorch training job to GCP AI Platform
